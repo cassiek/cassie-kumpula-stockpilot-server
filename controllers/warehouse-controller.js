@@ -60,12 +60,24 @@ const deleteWarehouse = async (req, res) => {
 };
 
 //GET all inventory for a given warehouse
+const inventory = async (req, res) => {
+    try {
+      const inventory = await knex("warehouses")
+        .join("inventory-i", "inventory-i.warehouse_id", "warehouses.id")
+        .where({ warehouse_id: req.params.id });
+      res.json(inventory);
+    } catch (error) {
+      res.status(500).json({
+        message: `Unable to retrieve inventory for warehouse with ID ${req.params.id}: ${error}`,
+      });
+    }
+};
 
-
-//GET all inventory types for a given warehouse
+//GET all product types for a given warehouse
 
 export {
     getAllWarehouses,
     getOneWarehouse,
-    deleteWarehouse
+    deleteWarehouse,
+    inventory
 };
