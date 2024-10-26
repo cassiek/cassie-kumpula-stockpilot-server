@@ -11,4 +11,6 @@ router.route("/:id").get(inventoryIController.getOneItem);
 
 router.route("/:id").delete(inventoryIController.deleteItem);
 
+// still need create and update
+
 export default router;

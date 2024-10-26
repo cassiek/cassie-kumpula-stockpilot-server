@@ -12,6 +12,8 @@ router.route("/:id").get(warehouseController.getOneWarehouse);
 
 router.route("/:id").delete(warehouseController.deleteWarehouse);
 
-router.route("/:id/inventory").get(warehouseController.inventory);
+router.route("/:id/inventory").get(warehouseController.allInventory);
+
+router.route("/:id/products").get(warehouseController.productTypes);
 
 export default router;
