@@ -10,4 +10,6 @@ router.route("/").get(warehouseController.getAllWarehouses);
 
 router.route("/:id").get(warehouseController.getOneWarehouse);
 
+router.route("/:id").delete(warehouseController.deleteWarehouse);
+
 export default router;
