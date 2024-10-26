@@ -3,14 +3,12 @@ import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 import express from "express";
 const router = express.Router();
+import * as inventoryIIController from "../controllers/inventory-ii-controller.js";
 
-router.get("/", async (_req, res) => {
-    try {
-        const data = await knex("inventory-ii");
-        res.status(200).json(data);
-    } catch(err) {
-        res.status(400).send(`Error retrieving inventory-ii: ${err}`);
-    }
-});
+router.route("/").get(inventoryIIController.getAllInventoryII);
+
+router.route("/:id").get(inventoryIIController.getOneProductType);
+
+// DONE
 
 export default router;

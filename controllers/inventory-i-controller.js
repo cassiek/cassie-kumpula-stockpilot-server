@@ -5,7 +5,7 @@ import configuration from "../knexfile.js";
 const knex = initKnex(configuration);
 
 //GET all inventory from inventory-i
-const getAllInventory = async (req, res) => {
+const getAllInventoryI = async (req, res) => {
     try {
         const data = await knex("inventory-i");
         res.status(200).json(data);
@@ -60,7 +60,7 @@ const deleteItem = async (req, res) => {
 };
 
 export {
-    getAllInventory,
+    getAllInventoryI,
     getOneItem,
     deleteItem
 };

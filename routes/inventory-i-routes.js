@@ -5,7 +5,7 @@ import express from "express";
 const router = express.Router();
 import * as inventoryIController from "../controllers/inventory-i-controller.js";
 
-router.route("/").get(inventoryIController.getAllInventory);
+router.route("/").get(inventoryIController.getAllInventoryI);
 
 router.route("/:id").get(inventoryIController.getOneItem);
 
