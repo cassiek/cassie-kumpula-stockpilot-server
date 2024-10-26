@@ -3,7 +3,6 @@ import "dotenv/config";
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-
 export default {
   client: "mysql2",
   connection: {
