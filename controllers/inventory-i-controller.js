@@ -36,7 +36,27 @@ const getOneItem = async (req, res) => {
 //Validation middleware???
 
 //PUT(edit) single inventory item
-// need form data
+const editItem = async (req, res) => {
+    try {
+      const rowsUpdated = await knex("inventory-i")
+        .where({ id: req.params.id })
+        .update(req.body);
+      if (rowsUpdated === 0) {
+        return res.status(404).json({ 
+            message: `Item with ID ${req.params.id} not found` 
+        });
+      }
+      const updatedItem = await knex("inventory-i")
+        .where({
+            id: req.params.id
+        });
+      res.status(200).json(updatedItem);
+    } catch(error) {
+        res.status(500).json({ 
+            message: `Unable to update item with ID ${req.params.id}: ${error}` 
+        });
+    }
+};
 
 //POST(create) a new inventory item
 // need form data
@@ -61,6 +81,7 @@ const deleteItem = async (req, res) => {
 
 export {
     getAllInventoryI,
+    editItem,
     getOneItem,
     deleteItem
 };

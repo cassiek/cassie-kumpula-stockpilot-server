@@ -10,7 +10,9 @@ router.route("/").get(inventoryIController.getAllInventoryI);
 router.route("/:id").get(inventoryIController.getOneItem);
 
 router.route("/:id").delete(inventoryIController.deleteItem);
+ 
+router.route("/:id").put(inventoryIController.editItem);
 
-// still need create and update
+// still need create
 
 export default router;

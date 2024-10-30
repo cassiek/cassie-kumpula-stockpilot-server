@@ -14,8 +14,12 @@ router.route("/:id").delete(warehouseController.deleteWarehouse);
 
 router.route("/:id/inventory").get(warehouseController.allInventory);
 
-router.route("/:id/products").get(warehouseController.productTypes); /// ????
+router.route("/:id/products").get(warehouseController.productTypes);
 
-// still need create and update, will i need "/:id/products" ?????
+router.route("/:id/inventory").put(warehouseController.editWarehouse);
+
+// still need create
+
+// will i need "/:id/products", "/:id/inventory" ?????
 
 export default router;

@@ -36,8 +36,33 @@ const getOneWarehouse = async (req, res) => {
 //Validation middleware ???
 
 //PUT single warehouse
+const editWarehouse = async (req, res) => {
+    try {
+      const rowsUpdated = await knex("warehouses")
+        .where({ id: req.params.id })
+        .update(req.body);
+  
+      if (rowsUpdated === 0) {
+        return res.status(404).json({ 
+            message: "Warehouse not found" 
+        });
+      }
+  
+      const updatedWarehouse = await knex("warehouses")
+        .where({
+            id: req.params.id
+        });
+  
+      res.json(updatedWarehouse[0]);
+    } catch(error) {
+        res.status(500).json({ 
+            message: `Unable to update warehouse with ID ${req.params.id}: ${error}` 
+        });
+    }
+};
 
 //POST a new warehouse
+
 
 //DELETE warehouse and associated inventory items, inventory types (if eliminated...)
 const deleteWarehouse = async (req, res) => {
@@ -95,6 +120,7 @@ const productTypes = async (req, res) => {
 export {
     getAllWarehouses,
     getOneWarehouse,
+    editWarehouse,
     deleteWarehouse,
     allInventory,
     productTypes
